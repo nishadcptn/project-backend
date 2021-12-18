@@ -6,9 +6,13 @@ const fs = require('fs');
 
 router.get('/', async (req, res) =>{
     let todos;
-    console.log(models.Todo);
-    // todos = await models.Todo.findAll();
-    return res.status(200).json("hghg");
+    todos = await models.Todo.findAll();
+    if(todos){
+        return res.status(200).json(todos);
+    }
+    else{
+        return res.json({"msg":"No data Found"});
+    }
 });
 
 module.exports = router;

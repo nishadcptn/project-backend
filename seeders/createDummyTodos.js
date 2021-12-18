@@ -29,8 +29,12 @@ var run = async function(){
             console.log("Modified "+Todo.name);
         }
         else{
-
-            console.log("Created "+Todo.name);
+            Todo = await models.Todo.create({
+                title: Todos[i]['title'], 
+                description: Todos[i]['description'], 
+                completed: Todos[i]['completed'], 
+            });
+            console.log("Created "+Todo.title);
         }
     }
 }
