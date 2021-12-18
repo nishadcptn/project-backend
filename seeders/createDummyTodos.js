@@ -21,19 +21,15 @@ var run = async function(){
                 title: Todos[i]['title']
             },
         });
-        if(Pack){
+        if(Todo){
             Todo.title= Todos[i]['title']; 
             Todo.description= Todos[i]['description']; 
             Todo.completed= Todos[i]['completed']; 
             await Todo.save() 
-            console.log("Modified "+Pack.name);
+            console.log("Modified "+Todo.name);
         }
         else{
-            Todo = await models.Todo.create({
-                title: Todos[i]['name'], 
-                description: Todos[i]['description'], 
-                completed: Todos[i]['completed'], 
-            });
+
             console.log("Created "+Todo.name);
         }
     }
