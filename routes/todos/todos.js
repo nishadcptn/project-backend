@@ -2,7 +2,7 @@ let express = require('express');
 const models = require('../../models');
 const router = express.Router({ mergeParams: true });
 const fs = require('fs');
-const { where } = require('sequelize');
+// const { where } = require('sequelize');
 
 
 router.get('/', async (req, res) =>{
@@ -64,14 +64,19 @@ router.patch('/:UUID', async (req, res) =>{
     }catch(error){
         return res.status(404).json("Something went wrong");
     }
-    if(title)
-        todos.title = title;
-    if(description)
-        todos.description = description;
-    if(completed)
-        todos.completed = completed === 'true' ? true : false
-    todos.save();
-    return res.status(200).json(todos);
+    if(todos){
+        if(title)
+            todos.title = title;
+        if(description)
+            todos.description = description;
+        if(completed)
+            todos.completed = completed === 'true' ? true : false
+        todos.save();
+        return res.status(200).json(todos);
+    }else{
+        return res.status(404).json("data not found");
+    }
+    
 });
 
 router.delete('/:UUID', async (req, res) =>{
