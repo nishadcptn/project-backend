@@ -6,6 +6,7 @@ const fs = require("fs");
 
 router.get("/", async (req, res) => {
   let todos;
+  let count;
   if (req.query.completed) {
     try {
       todos = await models.Todo.findAll({
@@ -13,13 +14,23 @@ router.get("/", async (req, res) => {
           completed: req.query.completed,
         },
       });
-      return res.status(200).json(todos);
+      count = await models.Todo.count({
+        where: {
+          completed: req.query.completed,
+        },
+      });
+      return res.status(200).json({todos:todos, count:count});
     } catch (error) {
       return res.status(404).json("Something went wrong");
     }
   } else {
-    todos = await models.Todo.findAll();
-    return res.status(200).json(todos);
+    try {
+      todos = await models.Todo.findAll();
+      count = await models.Todo.count();
+      return res.status(200).json({todos:todos, count:count});
+    } catch (error) {
+      return res.status(404).json("Something went wrong");
+    }
   }
 });
 
