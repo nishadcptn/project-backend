@@ -3,39 +3,25 @@ const models = require('../models');
 const Todos =[
     {
         title: "Legendary Pack",
-        description: "Mystic weapon wielded by the final leader",
+        description: "aliquam malesuada bibendum arcu vitae elementum curabitur vitae nunc sed velit dignissim sodales ut eu sem integer vitae justo eget magna fermentum iaculis eu non",
         completed: false,
 
     },
     {
         title: "Iconic Pack",
-        description: "'Full defense for the entire body with strength amplification using servos",
+        description: "aliquam malesuada bibendum arcu vitae elementum curabitur vitae nunc sed velit dignissim sodales ut eu sem integer vitae justo eget magna fermentum iaculis eu non",
         completed: true,
     }
 ]
 var run = async function(){
     console.log("Run");
     for(var i=0; i< Todos.length; i++){
-        var Todo = await models.Todo.findOne({
-            where: { 
-                title: Todos[i]['title']
-            },
-        });
-        if(Todo){
-            Todo.title= Todos[i]['title']; 
-            Todo.description= Todos[i]['description']; 
-            Todo.completed= Todos[i]['completed']; 
-            await Todo.save() 
-            console.log("Modified "+Todo.name);
-        }
-        else{
             Todo = await models.Todo.create({
                 title: Todos[i]['title'], 
                 description: Todos[i]['description'], 
                 completed: Todos[i]['completed'], 
             });
             console.log("Created "+Todo.title);
-        }
     }
 }
 
