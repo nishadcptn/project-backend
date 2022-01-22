@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "build": "sequelize db:migrate && node seeders/createDummyTodos.js"
   },
   "engines": {
     "node": "12.x"
