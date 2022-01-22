@@ -7,15 +7,24 @@ module.exports = {
     url: DATABASE_URL,
     dialect: 'postgres',
     logging: false,
+    dialectOptions: {
+      ssl: true
+    }
   },
   test: {
     url: DATABASE_URL,
     dialect: 'postgres',
     logging: false,
+    dialectOptions: {
+      ssl: true
+    }
   },
   production: {
     url: DATABASE_URL,
     dialect: 'postgres',
     logging: false,
+    dialectOptions: {
+      ssl: true
+    }
   },
 };
